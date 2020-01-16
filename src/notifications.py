@@ -49,7 +49,7 @@ def send_email_notification(config, found):
             smtp_port = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_PORT_NAME)
             smtp_from = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_FROM_NAME)
             smtp_password = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_PASSWORD_NAME)
-            smtp_to = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_TO_NAME)
+            #smtp_to = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_TO_NAME)
             msg = MIMEMultipart()
             msg['From'] = smtp_from
             msg['To'] = utils.EMAIL_SMTP_TO_NAME

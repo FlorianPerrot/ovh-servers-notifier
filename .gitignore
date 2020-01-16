@@ -30,6 +30,7 @@ var/
 *.egg
 pyvenv.cfg
 bin/
+share/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -67,3 +68,4 @@ target/
 *kimsufi.conf
 *.code-workspace
 .pylintrc
+settings.json

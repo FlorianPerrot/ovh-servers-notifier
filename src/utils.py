@@ -53,11 +53,11 @@ def open_and_load_config(args):
         except configparser.ParsingError as e:
             my_logger.log(FATAL, 'Parsing error: {}'.format(str(e)))
     else:
-        my_logger.log(FATAL, 'Config file "{}" not found."'.format(configPath))
+        my_logger.log(FATAL, 'Config file "{}" not found."'.format(config_path))
 
     check_config(config)
 
-    return config, config_path
+    return config
 
 def check_config(config):
     # Check at least a section of notification exists

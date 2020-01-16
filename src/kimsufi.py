@@ -47,7 +47,7 @@ def main():
     args = parser.parse_args()
 
     # Open conf and load parameters
-    config, config_path = utils.open_and_load_config(args)
+    config = utils.open_and_load_config(args)
     my_logger.level_used = config.get(utils.SECTION_DEFAULT_NAME, utils.LOG_LEVEL_NAME)
     api_url = config.get(utils.SECTION_DEFAULT_NAME, utils.API_URL_NAME)
     id_server = config.get(utils.SECTION_DEFAULT_NAME, utils.ID_SERVER_NAME)
