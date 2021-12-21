@@ -84,11 +84,12 @@ def main():
                         last_status = False
             else:
                 my_logger.log(ERROR, 'Calling API: "{}" "{}"'.format(response.status, response.message))
+        except Exception as e:
+            my_logger.log(ERROR, 'Calling API: {}'.format(str(e)))
+        finally:
             # If signal occurs during process, there is no need to sleep
             if running:
                 time.sleep(float(polling_interval))
-        except Exception as e:
-            my_logger.log(ERROR, 'Calling API: {}'.format(str(e)))
 
     my_logger.log(INFO, 'kimsufi script ended.')
 
