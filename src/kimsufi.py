@@ -2,7 +2,7 @@
 kimsufi.py: kimsufi's main file.
 
 kimsufi: Sends an alert when your kimsufi is available.
-Copyright (C) 2016-2018 pofilo <git@pofilo.fr>
+Copyright (C) 2016-2021 pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -31,7 +31,7 @@ def signal_handler(signal, frame):
     global running
     running = False
     my_logger.log(INFO, 'Ending signal handled, ending the script...')
-    
+
 def main():
     my_logger.log(INFO, '--------------------')
 
@@ -89,8 +89,9 @@ def main():
                 time.sleep(float(polling_interval))
         except Exception as e:
             my_logger.log(ERROR, 'Calling API: {}'.format(str(e)))
-    
+
     my_logger.log(INFO, 'kimsufi script ended.')
 
 if __name__ == '__main__':
     main()
+

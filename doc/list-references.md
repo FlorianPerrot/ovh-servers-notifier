@@ -3,33 +3,51 @@ List extracted [from the list of Kimsufi's servers](https://www.kimsufi.com/en/s
 
 ## List of French servers
 
-| Name  | Reference |
-|-------|-----------|
-| KS-1  | 1801sk12  |
-| KS-2  | 1801sk13  |
-| KS-3  | 1801sk14  |
-| KS-4  | 1801sk15  |
-| KS-5  | 1801sk16  |
-| KS-6  | 1801sk17  |
-| KS-7  | 1801sk18  |
-| KS-8  | 1801sk19  |
-| KS-9  | 1801sk20  |
-| KS-10 | 1801sk21  |
-| KS-11 | 1801sk22  |
-| KS-12 | 1801sk23  |
-
+| Name      | Reference |
+|-----------|-----------|
+| KS-1      | 2201sk010 |
+| KS-2      | 2201sk011 |
+| KS-3      | 2201sk012 |
+| KS-4      | 2201sk020 |
+| KS-5      | 2201sk030 |
+| KS-6      | 2201sk031 |
+| KS-7      | 2201sk032 |
+| KS-8      | 2201sk033 |
+| KS-9      | 2201sk040 |
+| KS-10     | 2201sk041 |
+| KS-11     | 2201sk050 |
+| KS-12     | 2201sk051 |
+| KS-13     | 2201sk060 |
+| KS-14     | 2201sk061 |
+| KS-15     | 2201sk070 |
+| KS-16     | 2201sk080 |
+| KS-17     | 2201sk081 |
+| KS-GAME-1 | 2201sk090 |
+| KS-GAME-2 | 2201sk091 |
 
 ## List of Canadian servers
 
-| Name  | Reference |
-|-------|-----------|
-| KS-1  | 1804sk12  |
-| KS-5  | 1804sk16  |
-| KS-7  | 1804sk18  |
-| KS-9  | 1804sk20  |
-| KS-10 | 1804sk21  |
-| KS-11 | 1804sk22  |
-| KS-12 | 1804sk23  |
+| Name      | Reference |
+|-----------|-----------|
+| KS-1      | 2204sk010 |
+| KS-2      | 2204sk011 |
+| KS-3      | 2204sk012 |
+| KS-4      | 2204sk020 |
+| KS-5      | 2204sk030 |
+| KS-6      | 2204sk031 |
+| KS-7      | 2204sk032 |
+| KS-8      | 2204sk033 |
+| KS-9      | 2204sk040 |
+| KS-10     | 2204sk041 |
+| KS-11     | 2204sk050 |
+| KS-12     | 2204sk051 |
+| KS-13     | 2204sk060 |
+| KS-14     | 2204sk061 |
+| KS-15     | 2204sk070 |
+| KS-16     | 2204sk080 |
+| KS-17     | 2204sk081 |
+| KS-GAME-1 | 2204sk090 |
+| KS-GAME-2 | 2204sk091 |
 
 # Not up-to-date ?
 

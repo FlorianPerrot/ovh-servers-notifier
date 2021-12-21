@@ -2,7 +2,7 @@
 utils.py: kimsufi's utilities.
 
 kimsufi: Sends an alert when your kimsufi is available.
-Copyright (C) 2018 pofilo <git@pofilo.fr>
+Copyright (C) 2018-2021 pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -65,7 +65,7 @@ def check_config(config):
             and not is_config_section(config, SECTION_EMAIL_NAME)
             and not is_config_section(config, SECTION_TELEGRAM_NAME)):
         my_logger.log(WARN, 'No section of notification found in the config file, just logs will be done.')
-    
+
     # Check the mandatories keys and sections
     check_config_section(config, SECTION_ZONES_NAME)
     check_config_key(config, SECTION_DEFAULT_NAME, API_URL_NAME)
@@ -108,5 +108,6 @@ def check_config_key(config, section, key):
         my_logger.log(FATAL, 'No key "{}" in section "{}" in config file'.format(key, section))
 
 def check_python_version():
-    if version_info <= (3, 7):
-        my_logger.log(FATAL, 'The script needs at least python 3.7')
+    if version_info <= (3, 9):
+        my_logger.log(FATAL, 'The script needs at least python 3.9')
+

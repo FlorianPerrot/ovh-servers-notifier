@@ -2,7 +2,7 @@
 notifications.py: methods to send notifications by various ways.
 
 kimsufi: Sends an alert when your kimsufi is available.
-Copyright (C) 2018 pofilo <git@pofilo.fr>
+Copyright (C) 2018-2021 pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -53,7 +53,7 @@ def send_email_notification(config, found):
             msg = MIMEMultipart()
             msg['From'] = smtp_from
             msg['To'] = utils.EMAIL_SMTP_TO_NAME
-            msg['Subject'] = subject 
+            msg['Subject'] = subject
             msg.attach(MIMEText('EN: https://www.kimsufi.com/en/servers.xml\nFR: https://www.kimsufi.com/fr/serveurs.xml'))
             mailserver = smtplib.SMTP_SSL(smtp_server, smtp_port)
             mailserver.ehlo()
@@ -73,3 +73,4 @@ def send_telegram_notification(config, found):
         if not found:
             message = 'Too late, your kimsufi is not available anymore..'
         bot.send_message(chatID, message)
+

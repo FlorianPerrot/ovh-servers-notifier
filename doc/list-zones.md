@@ -10,7 +10,6 @@ List extracted [from the API](https://api.ovh.com/console/#/dedicated/server/ava
 | *Vint Hill ?*|*Vint Hill ?*| hil       |
 | London       | Londres     | lon       |
 | Roubaix      | Roubaix     | rbx       |
-| *Roubaix ?*  | *Roubaix ?* | rbx-hz    |
 | Strasbourg   | Strasbourg  | sbg       |
 | Singapore    | Singapour   | sgp       |
 | Sydney       | Sydney      | syd       |
@@ -25,4 +24,4 @@ If a zone is wrong, not up-to-date, a new zone is out or anything else, feel fre
 **Be careful with this list! It may not be up-to-date!** For example they can add or remove zones.
 
 So if you use the script with an old zone, you will never get notified because Kimsufi doesn't sell servers in this zone anymore.
- 
+

@@ -5,7 +5,7 @@ Sends an alert when your Kimsufi server is available.
 
 ## Requirements
 
-+ The script uses **python 3.7**
++ The script uses **python 3.9**
 
 ## Purpose
 
@@ -31,13 +31,13 @@ You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/n
 
 + Download the last stable version [available here](https://git.pofilo.fr/pofilo/kimsufi/releases)
 + `cd kimsufi`
-+ Create virtual environment: `python3.7 -m venv .`
++ Create virtual environment: `python3 -m env .`
 + Source it: `source bin/activate`
 + Install dependencies: `pip install -r requirements.txt`
 + `cp config/kimsufi.sample.conf config/kimsufi.conf`
 + Edit *config/kimsufi.conf*
 + `cd src`
-+ `python3.7 kimsufi.py` or `python3.7 -u kimsufi.py > log.txt &` if you want to use it as a daemon *(the PID is given in the first lines of the logs)*
++ `python3 kimsufi.py` or `python3 -u kimsufi.py > log.txt &` if you want to use it as a daemon *(the PID is given in the first lines of the logs)*
 
 ### Options
 
@@ -48,7 +48,7 @@ You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/n
 ### Testing configuration
 
 It would be too bad to not be notified because of a bad configuration.
-To test it, in your configuration file, you can change your `API_URL` with `https://git.pofilo.fr/pofilo/kimsufi/raw/branch/master/doc/example-availability-file.json` (this is the file `example-availability-file.json` in `doc/`). In this file, the server `1623hardzone1` is available in the zone `sbg`. If you start the script (`python3.7 kimsufi.py`), you should receive notifications by the notifiers you configured.
+To test it, in your configuration file, you can change your `API_URL` with `https://git.pofilo.fr/pofilo/kimsufi/raw/branch/master/doc/example-availability-file.json` (this is the file `example-availability-file.json` in `doc/`). In this file, the server `1623hardzone1` is available in the zone `sbg`. If you start the script (`python3 kimsufi.py`), you should receive notifications by the notifiers you configured.
 
 ### Adding notifier
 
@@ -67,4 +67,3 @@ This project is licensed under the GNU GPL License. See the [LICENSE](https://gi
 
 If you experience an issue, you have other ideas to the developpement or anything else, feel free to [report it](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
 
- 
