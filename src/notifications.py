@@ -12,11 +12,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 '''
 
-import http1
 import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import http1
 import telegram
 
 import utils
@@ -36,7 +36,7 @@ def send_http_notification(config, found):
             request = config.get(utils.SECTION_HTTP_REQUEST_NAME, utils.HTTP_REQUEST_NOT_FOUND_NAME)
         notif_response = http1.get(request)
         if notif_response.status != 200:
-            logger.error('Error calling HTTP request: "{}"'.format(request))
+            logger.error('Error calling HTTP request=%s', request)
 
 def send_email_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_EMAIL_NAME):
@@ -60,17 +60,17 @@ def send_email_notification(config, found):
             mailserver.login(smtp_from, smtp_password)
             mailserver.sendmail(smtp_from, smtp_from, msg.as_string())
             mailserver.quit()
-        except Exception as e:
-            logger.error('Sending email failed: {}'.format(str(e)))
+        except Exception as exc:
+            logger.error('Sending email failed: err=%s', str(exc))
 
 def send_telegram_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_TELEGRAM_NAME):
         logger.debug('Sending Telegram message')
         token = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_TOKEN_NAME)
-        chatID = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_CHATID_NAME)
+        chat_id = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_CHATID_NAME)
         bot = telegram.Bot(token)
         message = 'Hurry up, your kimsufi server is available!!'
         if not found:
             message = 'Too late, your kimsufi is not available anymore..'
-        bot.send_message(chatID, message)
+        bot.send_message(chat_id, message)
 

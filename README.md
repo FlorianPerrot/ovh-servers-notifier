@@ -54,6 +54,17 @@ To test it, in your configuration file, you can change your `API_URL` with `http
 
 You can hack the script and add notifiers in the file `notifications.py`. Simply create a new function (in parameter, you can have the config and the boolean meaning if the server is found or not) and call it into `send_notifications(config, found)`, modify the configuration file if needed, et voilà!
 
+### Linter
+
+`pylint` is a bit used for this project (not yet perfect, feel free to help if you have some time!).
+
+```
+pip install pylint
+pylint --disable=C0301 src/*\.py
+```
+
+*Screen are long enough to print larger lines...*
+
 ## License
 
 This project is licensed under the GNU GPL License. See the [LICENSE](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/LICENSE) file for the full license text.

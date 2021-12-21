@@ -15,8 +15,7 @@ You should have received a copy of the GNU General Public License along with thi
 import configparser
 import logging
 import os.path
-
-from sys import exit, version_info
+import sys
 
 DEFAULT_CONFIG_PATH = '../config/kimsufi.conf'
 SECTION_DEFAULT_NAME = 'GENERAL'
@@ -50,12 +49,12 @@ def open_and_load_config(args):
     if os.path.isfile(config_path):
         try:
             config.read(config_path)
-        except configparser.ParsingError as e:
-            logger.critical('Parsing error: {}'.format(str(e)))
-            exit(1)
+        except configparser.ParsingError as exc:
+            logger.critical('Parsing error=%s', str(exc))
+            sys.exit(1)
     else:
-        logger.critical('Config file "{}" not found."'.format(config_path))
-        exit(1)
+        logger.critical('config_path=%s not found', config_path)
+        sys.exit(1)
 
     check_config(config)
 
@@ -92,27 +91,25 @@ def check_config(config):
 def is_config_section(config, section):
     if config.has_section(section):
         return True
-    else:
-        return False
+    return False
 
 def is_config_key(config, section, key):
     if config.has_option(section, key):
         return True
-    else:
-        return False
+    return False
 
 def check_config_section(config, section):
     if not is_config_section(config, section):
-        logger.critical('No section "{}" in config file'.format(section))
-        exit(1)
+        logger.critical('No section=%s in config file', section)
+        sys.exit(1)
 
 def check_config_key(config, section, key):
     if not is_config_key(config, section, key):
-        logger.critical('No key "{}" in section "{}" in config file'.format(key, section))
-        exit(1)
+        logger.critical('No key=%s in section=%s in config file', key, section)
+        sys.exit(1)
 
 def check_python_version():
-    if version_info <= (3, 9):
+    if sys.version_info <= (3, 9):
         logger.critical('The script needs at least python 3.9')
-        exit(1)
+        sys.exit(1)
 

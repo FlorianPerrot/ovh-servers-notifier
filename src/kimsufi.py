@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with thi
 '''
 
 
+import argparse
 import json
 import logging
 import time
-import http1
-import argparse
 import signal
 from os import getpid
+import http1
 
 import utils
 import notifications
@@ -34,7 +34,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger('imapmanager')
 
-def signal_handler(signal, frame):
+def signal_handler(_signal, _frame):
     global running
     running = False
     logger.info('Ending signal handled, ending the script...')
@@ -67,7 +67,7 @@ def main():
         zones_desired.add(zone[1])
 
     last_status = False
-    logger.info('Calling kimsufi API on "{}" with PID "{}"'.format(api_url, getpid()))
+    logger.info('Calling kimsufi API on url=%s with PID=%d', api_url, getpid())
     while running:
         server_found = False
         try:
@@ -93,9 +93,9 @@ def main():
                         notifications.send_notifications(config, False)
                         last_status = False
             else:
-                logger.error('Calling API: "{}" "{}"'.format(response.status, response.message))
-        except Exception as e:
-            logger.error('Calling API: {}'.format(str(e)))
+                logger.error('Calling API: status=%d msg=%s', response.status, response.message)
+        except Exception as exc:
+            logger.error('Calling API: err=%s', str(exc))
         finally:
             # If signal occurs during process, there is no need to sleep
             if running:
