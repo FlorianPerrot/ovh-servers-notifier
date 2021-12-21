@@ -13,10 +13,10 @@ You should have received a copy of the GNU General Public License along with thi
 '''
 
 import configparser
+import logging
 import os.path
 
-from sys import version_info
-from logger import Logger, FATAL, ERROR, WARN, INFO, DEBUG
+from sys import exit, version_info
 
 DEFAULT_CONFIG_PATH = '../config/kimsufi.conf'
 SECTION_DEFAULT_NAME = 'GENERAL'
@@ -38,7 +38,7 @@ SECTION_TELEGRAM_NAME = 'TELEGRAM'
 TELEGRAM_TOKEN_NAME = 'TOKEN'
 TELEGRAM_CHATID_NAME = 'CHATID'
 
-my_logger = Logger()
+logger = logging.getLogger('kimsufi')
 
 def open_and_load_config(args):
     if args.config_path:
@@ -51,9 +51,11 @@ def open_and_load_config(args):
         try:
             config.read(config_path)
         except configparser.ParsingError as e:
-            my_logger.log(FATAL, 'Parsing error: {}'.format(str(e)))
+            logger.critical('Parsing error: {}'.format(str(e)))
+            exit(1)
     else:
-        my_logger.log(FATAL, 'Config file "{}" not found."'.format(config_path))
+        logger.critical('Config file "{}" not found."'.format(config_path))
+        exit(1)
 
     check_config(config)
 
@@ -64,7 +66,7 @@ def check_config(config):
     if (not is_config_section(config, SECTION_HTTP_REQUEST_NAME)
             and not is_config_section(config, SECTION_EMAIL_NAME)
             and not is_config_section(config, SECTION_TELEGRAM_NAME)):
-        my_logger.log(WARN, 'No section of notification found in the config file, just logs will be done.')
+        logger.warning('No section of notification found in the config file, just logs will be done.')
 
     # Check the mandatories keys and sections
     check_config_section(config, SECTION_ZONES_NAME)
@@ -101,13 +103,16 @@ def is_config_key(config, section, key):
 
 def check_config_section(config, section):
     if not is_config_section(config, section):
-        my_logger.log(FATAL, 'No section "{}" in config file'.format(section))
+        logger.critical('No section "{}" in config file'.format(section))
+        exit(1)
 
 def check_config_key(config, section, key):
     if not is_config_key(config, section, key):
-        my_logger.log(FATAL, 'No key "{}" in section "{}" in config file'.format(key, section))
+        logger.critical('No key "{}" in section "{}" in config file'.format(key, section))
+        exit(1)
 
 def check_python_version():
     if version_info <= (3, 9):
-        my_logger.log(FATAL, 'The script needs at least python 3.9')
+        logger.critical('The script needs at least python 3.9')
+        exit(1)
 

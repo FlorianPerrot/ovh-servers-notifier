@@ -13,15 +13,15 @@ You should have received a copy of the GNU General Public License along with thi
 '''
 
 import http1
+import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import telegram
 
 import utils
-from logger import Logger, FATAL, ERROR, WARN, INFO, DEBUG
 
-my_logger = Logger()
+logger = logging.getLogger('kimsufi')
 
 def send_notifications(config, found):
     send_http_notification(config, found)
@@ -30,17 +30,17 @@ def send_notifications(config, found):
 
 def send_http_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_HTTP_REQUEST_NAME):
-        my_logger.log(DEBUG, 'Sending HTTP request')
+        logger.debug('Sending HTTP request')
         request = config.get(utils.SECTION_HTTP_REQUEST_NAME, utils.HTTP_REQUEST_FOUND_NAME)
         if not found:
             request = config.get(utils.SECTION_HTTP_REQUEST_NAME, utils.HTTP_REQUEST_NOT_FOUND_NAME)
         notif_response = http1.get(request)
-        if notif_response.status is not 200:
-            my_logger.log(ERROR, 'Error calling HTTP request: "{}"'.format(request))
+        if notif_response.status != 200:
+            logger.error('Error calling HTTP request: "{}"'.format(request))
 
 def send_email_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_EMAIL_NAME):
-        my_logger.log(DEBUG, 'Sending Email')
+        logger.debug('Sending Email')
         subject = 'Hurry up, your kimsufi server is available!!'
         if not found:
             subject = 'Too late, your kimsufi is not available anymore..'
@@ -61,11 +61,11 @@ def send_email_notification(config, found):
             mailserver.sendmail(smtp_from, smtp_from, msg.as_string())
             mailserver.quit()
         except Exception as e:
-            my_logger.log(ERROR, 'Sending email failed: {}'.format(str(e)))
+            logger.error('Sending email failed: {}'.format(str(e)))
 
 def send_telegram_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_TELEGRAM_NAME):
-        my_logger.log(DEBUG, 'Sending Telegram message')
+        logger.debug('Sending Telegram message')
         token = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_TOKEN_NAME)
         chatID = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_CHATID_NAME)
         bot = telegram.Bot(token)

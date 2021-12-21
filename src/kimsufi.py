@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 import json
+import logging
 import time
 import http1
 import argparse
@@ -22,18 +23,24 @@ from os import getpid
 
 import utils
 import notifications
-from logger import Logger, FATAL, ERROR, WARN, INFO, DEBUG
 
+### GLOBAL VARIABLES ###
 running = True
-my_logger = Logger()
+
+### LOGGING CONF ###
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s: %(message)s'
+)
+logger = logging.getLogger('imapmanager')
 
 def signal_handler(signal, frame):
     global running
     running = False
-    my_logger.log(INFO, 'Ending signal handled, ending the script...')
+    logger.info('Ending signal handled, ending the script...')
 
 def main():
-    my_logger.log(INFO, '--------------------')
+    logger.info('--------------------')
 
     # Check python3 is used
     utils.check_python_version()
@@ -48,7 +55,10 @@ def main():
 
     # Open conf and load parameters
     config = utils.open_and_load_config(args)
-    my_logger.level_used = config.get(utils.SECTION_DEFAULT_NAME, utils.LOG_LEVEL_NAME)
+
+    level = logging.getLevelName(config.get(utils.SECTION_DEFAULT_NAME, utils.LOG_LEVEL_NAME))
+    logger.setLevel(level)
+
     api_url = config.get(utils.SECTION_DEFAULT_NAME, utils.API_URL_NAME)
     id_server = config.get(utils.SECTION_DEFAULT_NAME, utils.ID_SERVER_NAME)
     polling_interval = config.get(utils.SECTION_DEFAULT_NAME, utils.POLLING_INTERVAL_NAME)
@@ -57,7 +67,7 @@ def main():
         zones_desired.add(zone[1])
 
     last_status = False
-    my_logger.log(INFO, 'Calling kimsufi API on "{}" with PID "{}"'.format(api_url, getpid()))
+    logger.info('Calling kimsufi API on "{}" with PID "{}"'.format(api_url, getpid()))
     while running:
         server_found = False
         try:
@@ -69,29 +79,29 @@ def main():
                     if set(zones).intersection(zones_desired) and item['hardware'] == id_server:
                         server_found = True
                         if not last_status:
-                            my_logger.log(INFO, 'Found available server, sending notifications...')
+                            logger.info('Found available server, sending notifications...')
                             notifications.send_notifications(config, True)
                             last_status = True
                         else:
-                            my_logger.log(DEBUG, 'Notification already sent, passing...')
+                            logger.debug('Notification already sent, passing...')
                         # Do not iterate on other items as we already found an available server
                         break
                 if not server_found:
-                    my_logger.log(DEBUG, 'No server available')
+                    logger.debug('No server available')
                     if last_status:
-                        my_logger.log(INFO, 'Server not available anymore')
+                        logger.info('Server not available anymore')
                         notifications.send_notifications(config, False)
                         last_status = False
             else:
-                my_logger.log(ERROR, 'Calling API: "{}" "{}"'.format(response.status, response.message))
+                logger.error('Calling API: "{}" "{}"'.format(response.status, response.message))
         except Exception as e:
-            my_logger.log(ERROR, 'Calling API: {}'.format(str(e)))
+            logger.error('Calling API: {}'.format(str(e)))
         finally:
             # If signal occurs during process, there is no need to sleep
             if running:
                 time.sleep(float(polling_interval))
 
-    my_logger.log(INFO, 'kimsufi script ended.')
+    logger.info('kimsufi script ended.')
 
 if __name__ == '__main__':
     main()
