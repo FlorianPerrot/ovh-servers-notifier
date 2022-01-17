@@ -21,7 +21,7 @@ DEFAULT_CONFIG_PATH = '../config/kimsufi.conf'
 SECTION_DEFAULT_NAME = 'GENERAL'
 API_URL_NAME = 'API_URL'
 SECTION_ZONES_NAME = 'ZONES'
-ID_SERVER_NAME = 'ID_SERVER'
+ID_SERVERS_NAME = 'ID_SERVERS'
 POLLING_INTERVAL_NAME = 'POLLING_INTERVAL'
 LOG_LEVEL_NAME = 'LOG_LEVEL'
 SECTION_HTTP_REQUEST_NAME = 'HTTP_REQUEST'
@@ -70,7 +70,7 @@ def check_config(config):
     # Check the mandatories keys and sections
     check_config_section(config, SECTION_ZONES_NAME)
     check_config_key(config, SECTION_DEFAULT_NAME, API_URL_NAME)
-    check_config_key(config, SECTION_DEFAULT_NAME, ID_SERVER_NAME)
+    check_config_key(config, SECTION_DEFAULT_NAME, ID_SERVERS_NAME)
     check_config_key(config, SECTION_DEFAULT_NAME, POLLING_INTERVAL_NAME)
     check_config_key(config, SECTION_DEFAULT_NAME, LOG_LEVEL_NAME)
 

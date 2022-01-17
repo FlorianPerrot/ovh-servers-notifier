@@ -60,7 +60,7 @@ def main():
     logger.setLevel(level)
 
     api_url = config.get(utils.SECTION_DEFAULT_NAME, utils.API_URL_NAME)
-    id_server = config.get(utils.SECTION_DEFAULT_NAME, utils.ID_SERVER_NAME)
+    id_servers = config.get(utils.SECTION_DEFAULT_NAME, utils.ID_SERVERS_NAME).split(',')
     polling_interval = config.get(utils.SECTION_DEFAULT_NAME, utils.POLLING_INTERVAL_NAME)
     zones_desired = set()
     for zone in set(config.items(utils.SECTION_ZONES_NAME)):
@@ -76,7 +76,7 @@ def main():
                 struct = json.loads(response.body)
                 for item in struct:
                     zones = [z['datacenter'] for z in item['datacenters'] if z['availability'] not in ('unavailable', 'unknown')]
-                    if set(zones).intersection(zones_desired) and item['hardware'] == id_server:
+                    if set(zones).intersection(zones_desired) and item['hardware'] in id_servers:
                         server_found = True
                         if not last_status:
                             logger.info('Found available server, sending notifications...')
