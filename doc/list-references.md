@@ -49,11 +49,11 @@ List extracted [from the list of Kimsufi's servers](https://www.kimsufi.com/en/s
 | KS-GAME-1 | 2204sk090 |
 | KS-GAME-2 | 2204sk091 |
 
-# Not up-to-date ?
+# Not up-to-date?
 
 If a reference is wrong, not up-to-date, a new server is out or anything else, feel free to [open an issue](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
 
 # Disclaimer
-**Be careful with this list! It may not be up-to-date!** For example they can upgrade the characteristics of a server and then change the reference to distinguish old and new server having the same commercial name.
+**Be careful with this list! It may not be up-to-date!** For example they can upgrade the characteristics of a server and then change the reference to distinguish old and new servers having the same commercial name.
 
 So if you use the script with an old reference, you will never get notified because Kimsufi doesn't sell this reference anymore.

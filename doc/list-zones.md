@@ -16,7 +16,7 @@ List extracted [from the API](https://api.ovh.com/console/#/dedicated/server/ava
 | *Vint Hill ?*|*Vint Hill ?*| vin       |
 | Warsaw       | Varsovie    | waw       |
 
-# Not up-to-date ?
+# Not up-to-date?
 
 If a zone is wrong, not up-to-date, a new zone is out or anything else, feel free to [open an issue](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
 

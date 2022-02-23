@@ -15,7 +15,7 @@ There is (for now) 3 types of notifications:
 + HTTP request
 + Telegram message
 
-A notification will be send to the notifiers configured when the server is available and when it's not anymore.
+A notification will be sent to the notifiers configured when the server is available and when it's not anymore.
 
 ## Documentation
 
@@ -25,13 +25,13 @@ In `doc/`, you can find [the list of references](https://git.pofilo.fr/pofilo/ki
 
 ### Telegram
 
-You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/notice-telegram.md) the documentation helping you to setup the telegram notifier.
+You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/notice-telegram.md) the documentation helping you to set up the telegram notifier.
 
 ## Installation
 
 + Download the last stable version [available here](https://git.pofilo.fr/pofilo/kimsufi/releases)
 + `cd kimsufi`
-+ Create virtual environment: `python3 -m env .`
++ Create virtual environment: `python3 -m venv .`
 + Source it: `source bin/activate`
 + Install dependencies: `pip install -r requirements.txt`
 + `cp config/kimsufi.sample.conf config/kimsufi.conf`
@@ -48,7 +48,7 @@ You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/n
 ### Testing configuration
 
 It would be too bad to not be notified because of a bad configuration.
-To test it, in your configuration file, you can change your `API_URL` with `https://git.pofilo.fr/pofilo/kimsufi/raw/branch/master/doc/example-availability-file.json` (this is the file `example-availability-file.json` in `doc/`). In this file, the server `1623hardzone1` is available in the zone `sbg`. If you start the script (`python3 kimsufi.py`), you should receive notifications by the notifiers you configured.
+To test it, in your configuration file, you can change your `API_URL` with `https://git.pofilo.fr/pofilo/kimsufi/raw/branch/master/doc/example-availability-file.json` (this is the file `example-availability-file.json` in `doc/`). In this file, the server `1623hardzone1` is available in the zone `sbg`. If you start the script (`python3 kimsufi.py`), you should receive notifications from the notifiers you configured.
 
 ### Adding notifier
 
@@ -63,7 +63,7 @@ pip install pylint
 pylint --disable=C0301 src/*\.py
 ```
 
-*Screen are long enough to print larger lines...*
+*Screens are long enough to print big lines...*
 
 ## License
 
@@ -76,5 +76,5 @@ This project is licensed under the GNU GPL License. See the [LICENSE](https://gi
 
 ## Bugs
 
-If you experience an issue, you have other ideas to the developpement or anything else, feel free to [report it](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
+If you experience an issue, you have other ideas for the development, or anything else, feel free to [report it](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
 
