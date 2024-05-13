@@ -2,3 +2,4 @@
 .idea/
 .git/
 pyvenv.cfg
+config/ovh.conf
