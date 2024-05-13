@@ -1,7 +1,7 @@
 '''
 notifications.py: methods to send notifications by various ways.
 
-kimsufi: Sends an alert when your kimsufi is available.
+ovh: Sends an alert when your ovh is available.
 Copyright (C) pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -21,7 +21,7 @@ import telegram
 
 import utils
 
-logger = logging.getLogger('kimsufi')
+logger = logging.getLogger('ovh')
 
 def send_notifications(config, found):
     send_http_notification(config, found)
@@ -41,9 +41,9 @@ def send_http_notification(config, found):
 def send_email_notification(config, found):
     if utils.is_config_section(config, utils.SECTION_EMAIL_NAME):
         logger.debug('Sending Email')
-        subject = 'Hurry up, your kimsufi server is available!!'
+        subject = 'Hurry up, your ovh server is available!!'
         if not found:
-            subject = 'Too late, your kimsufi is not available anymore..'
+            subject = 'Too late, your ovh is not available anymore..'
         try:
             smtp_server = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_SERVER_NAME)
             smtp_port = config.get(utils.SECTION_EMAIL_NAME, utils.EMAIL_SMTP_PORT_NAME)
@@ -54,7 +54,6 @@ def send_email_notification(config, found):
             msg['From'] = smtp_from
             msg['To'] = utils.EMAIL_SMTP_TO_NAME
             msg['Subject'] = subject
-            msg.attach(MIMEText('EN: https://www.kimsufi.com/en/servers.xml\nFR: https://www.kimsufi.com/fr/serveurs.xml'))
             mailserver = smtplib.SMTP_SSL(smtp_server, smtp_port)
             mailserver.ehlo()
             mailserver.login(smtp_from, smtp_password)
@@ -69,8 +68,8 @@ def send_telegram_notification(config, found):
         token = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_TOKEN_NAME)
         chat_id = config.get(utils.SECTION_TELEGRAM_NAME, utils.TELEGRAM_CHATID_NAME)
         bot = telegram.Bot(token)
-        message = 'Hurry up, your kimsufi server is available!!'
+        message = 'Hurry up, your ovh server is available!!'
         if not found:
-            message = 'Too late, your kimsufi is not available anymore..'
+            message = 'Too late, your ovh is not available anymore..'
         bot.send_message(chat_id, message)
 

@@ -1,7 +1,7 @@
-# kimsufi
-Last stable version [available here](https://git.pofilo.fr/pofilo/kimsufi/releases).
+# OVH SERVER NOTIFIER
+[forked from pofilo/kimsufi](https://git.pofilo.fr/pofilo/kimsufi/releases)
 
-Sends an alert when your Kimsufi server is available.
+Sends an alert when your OVH server is available.
 
 ## Requirements
 
@@ -9,7 +9,7 @@ Sends an alert when your Kimsufi server is available.
 
 ## Purpose
 
-The objective is to **send notifications** when the Kimsufi server you want is available in the zone(s) desired.
+The objective is to **send notifications** when the ovh server you want is available in the zone(s) desired.
 There is (for now) 3 types of notifications:
 + Email
 + HTTP request
@@ -21,34 +21,24 @@ A notification will be sent to the notifiers configured when the server is avail
 
 ### References and zones
 
-In `doc/`, you can find [the list of references](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/list-references.md) and [the list of zones](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/list-zones.md). Helpful to edit the configuration file according to the Kimsufi server you want.
+In `doc/`, you can find [the list of references](doc/list-references.md) and [the list of zones](doc/list-zones.md). Helpful to edit the configuration file according to the ovh server you want.
 
 ### Telegram
 
-You can [find here](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/doc/notice-telegram.md) the documentation helping you to set up the telegram notifier.
+You can [find here](doc/notice-telegram.md) the documentation helping you to set up the telegram notifier.
 
 ## Installation
 
-+ Download the last stable version [available here](https://git.pofilo.fr/pofilo/kimsufi/releases)
-+ `cd kimsufi`
-+ Create virtual environment: `python3 -m venv .`
-+ Source it: `source bin/activate`
 + Install dependencies: `pip install -r requirements.txt`
-+ `cp config/kimsufi.sample.conf config/kimsufi.conf`
-+ Edit *config/kimsufi.conf*
-+ `cd src`
-+ `python3 kimsufi.py` or `python3 -u kimsufi.py > log.txt &` if you want to use it as a daemon *(the PID is given in the first lines of the logs)*
++ `cp config/ovh.sample.conf config/ovh.conf`
++ Edit *config/ovh.conf*
++ `python3 src/ovh.py` or `python3 -u src/ovh.py > log.txt &` if you want to use it as a daemon *(the PID is given in the first lines of the logs)*
 
 ### Options
 
 + `-c`, `--conf`
-    + Specify the path of the configuration file (relative to `kimsufi/src` or absolute)
-    + Default value is `../config/kimsufi.conf`
-
-### Testing configuration
-
-It would be too bad to not be notified because of a bad configuration.
-To test it, in your configuration file, you can change your `API_URL` with `https://git.pofilo.fr/pofilo/kimsufi/raw/branch/master/doc/example-availability-file.json` (this is the file `example-availability-file.json` in `doc/`). In this file, the server `1623hardzone1` is available in the zone `sbg`. If you start the script (`python3 kimsufi.py`), you should receive notifications from the notifiers you configured.
+    + Specify the path of the configuration file
+    + Default value is `config/ovh.conf`
 
 ### Adding notifier
 
@@ -67,14 +57,10 @@ pylint --disable=C0301 src/*\.py
 
 ## License
 
-This project is licensed under the GNU GPL License. See the [LICENSE](https://git.pofilo.fr/pofilo/kimsufi/src/branch/master/LICENSE) file for the full license text.
+This project is licensed under the GNU GPL License. See the [LICENSE](LICENSE) file for the full license text.
 
 ## Credits
 
 + [@Pofilo](https://git.pofilo.fr/pofilo/)
 + [@c4s4](https://github.com/c4s4)
-
-## Bugs
-
-If you experience an issue, you have other ideas for the development, or anything else, feel free to [report it](https://git.pofilo.fr/pofilo/kimsufi/issues) or  [fix it with a PR](https://git.pofilo.fr/pofilo/kimsufi/pulls)!
-
++ [@FlorianPerrot](https://github.com/FlorianPerrot)

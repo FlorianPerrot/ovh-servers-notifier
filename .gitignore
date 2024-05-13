@@ -65,7 +65,7 @@ docs/_build/
 # PyBuilder
 target/
 
-*kimsufi.conf
+*ovh.conf
 *.code-workspace
 .pylintrc
 settings.json

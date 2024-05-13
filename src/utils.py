@@ -1,7 +1,7 @@
 '''
-utils.py: kimsufi's utilities.
+utils.py: ovh's utilities.
 
-kimsufi: Sends an alert when your kimsufi is available.
+ovh: Sends an alert when your ovh is available.
 Copyright (C) pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -17,7 +17,7 @@ import logging
 import os.path
 import sys
 
-DEFAULT_CONFIG_PATH = '../config/kimsufi.conf'
+DEFAULT_CONFIG_PATH = 'config/ovh.conf'
 SECTION_DEFAULT_NAME = 'GENERAL'
 API_URL_NAME = 'API_URL'
 SECTION_ZONES_NAME = 'ZONES'
@@ -37,7 +37,7 @@ SECTION_TELEGRAM_NAME = 'TELEGRAM'
 TELEGRAM_TOKEN_NAME = 'TOKEN'
 TELEGRAM_CHATID_NAME = 'CHATID'
 
-logger = logging.getLogger('kimsufi')
+logger = logging.getLogger('ovh')
 
 def open_and_load_config(args):
     if args.config_path:

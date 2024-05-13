@@ -1,7 +1,7 @@
 '''
-kimsufi.py: kimsufi's main file.
+ovh.py: ovh's main file.
 
-kimsufi: Sends an alert when your kimsufi is available.
+ovh: Sends an alert when your ovh is available.
 Copyright (C) pofilo <git@pofilo.fr>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
@@ -67,7 +67,7 @@ def main():
         zones_desired.add(zone[1])
 
     last_status = False
-    logger.info('Calling kimsufi API on url=%s with PID=%d', api_url, getpid())
+    logger.info('Calling ovh API on url=%s with PID=%d', api_url, getpid())
     while running:
         server_found = False
         try:
@@ -76,7 +76,7 @@ def main():
                 struct = json.loads(response.body)
                 for item in struct:
                     zones = [z['datacenter'] for z in item['datacenters'] if z['availability'] not in ('unavailable', 'unknown')]
-                    if set(zones).intersection(zones_desired) and item['hardware'] in id_servers:
+                    if set(zones).intersection(zones_desired) and item['server'] in id_servers:
                         server_found = True
                         if not last_status:
                             logger.info('Found available server, sending notifications...')
@@ -101,7 +101,7 @@ def main():
             if running:
                 time.sleep(float(polling_interval))
 
-    logger.info('kimsufi script ended.')
+    logger.info('ovh script ended.')
 
 if __name__ == '__main__':
     main()
